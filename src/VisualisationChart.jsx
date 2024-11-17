@@ -9,7 +9,7 @@ const AirportDelayChart = () => {
     const [loading, setLoading] = useState(true); // Loader state
 
     useEffect(() => {
-        axios.get('http://localhost:5000/get_cleaned_data')
+        axios.get('http://localhost:5000/flight_delay_by_airline')
             .then(response => {
                 setData(response.data);
                 setLoading(false); // Stop loading once data is fetched
@@ -25,13 +25,14 @@ const AirportDelayChart = () => {
             {loading ? (
                 <div className="loader"></div>  // Loader animation
             ) : (
-                <BarChart width={800} height={400} data={data}>
+                <BarChart width={550} height={400} data={data}>
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="airport_name" />
-                    <YAxis />
+                    <XAxis dataKey="Airline" />
+                    {/* <YAxis label={{ value: 'Average Delay (minutes)', angle: -90, position: 'insideLeft' }} /> */}
+                    <YAxis/>
                     <Tooltip />
                     <Legend />
-                    <Bar dataKey="arr_delay" fill="#8884d8" name="Arrival Delay" />
+                    <Bar dataKey="ttl_delay" fill="#8884d8" name="Average Flight Delay (In Mintues)" barSize={50}/>
                 </BarChart>
             )}
         </div>
