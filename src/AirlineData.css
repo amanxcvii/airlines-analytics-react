@@ -1,0 +1,40 @@
+/* Slab container with box shadow */
+.slab-container {
+    display: flex;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+    padding: 20px;
+    overflow: hidden;
+  }
+  
+  /* Image on the left */
+  .image-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .airline-image {
+    max-width: 150px;
+    height: auto;
+  }
+  
+  /* Right section with filters and visual data */
+  .right-content {
+    flex: 2;
+    padding-left: 20px;
+  }
+  
+  .right-content h3 {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .right-content p {
+    font-size: 16px;
+    color: #555;
+  }
+  
