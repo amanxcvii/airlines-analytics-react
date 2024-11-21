@@ -30,7 +30,7 @@ const Analytics = () => {
         <div className="analytics-container">
             <header className="analytics-header">
                 <h1>Airline Performance Dashboard</h1>
-                <p>Monthly Overview of Flight Delays and Performance</p>
+                <p>Yearly Overview of Flight Delays and Performance</p>
             </header>
 
             <section className="key-metrics">

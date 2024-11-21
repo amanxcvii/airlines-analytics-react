@@ -1,40 +1,144 @@
-/* Slab container with box shadow */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes colorPulse {
+    0% {
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+    50% {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+    100% {
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+}
+
+@keyframes borderGlow {
+    0% {
+        box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+    50% {
+        box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    }
+    100% {
+        box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+}
+
 .slab-container {
     display: flex;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 20px 0;
+    align-items: center;
     padding: 20px;
+    border-radius: 12px;
+    transition: all 0.5s ease;
+    position: relative;
     overflow: hidden;
-  }
-  
-  /* Image on the left */
-  .image-container {
-    flex: 1;
+    animation: fadeIn 0.7s ease-out, colorPulse 3s infinite;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+.slab-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        45deg, 
+        rgba(255,255,255,0.05), 
+        rgba(255,255,255,0.1)
+    );
+    z-index: 1;
+    pointer-events: none;
+}
+
+.image-container {
+    flex: 1; /* Take up all available space */
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  
-  .airline-image {
-    max-width: 150px;
-    height: auto;
-  }
-  
-  /* Right section with filters and visual data */
-  .right-content {
-    flex: 2;
-    padding-left: 20px;
-  }
-  
-  .right-content h3 {
-    font-size: 18px;
-    font-weight: bold;
-  }
-  
-  .right-content p {
-    font-size: 16px;
-    color: #555;
-  }
-  
+    background-color: #ffffff00;
+    border-radius: 8px; /* Rounded corners */
+    overflow: hidden; /* Ensure the image stays within rounded corners */
+    height: 180px;
+    position: relative;
+    transition: all 0.5s ease;
+}
+
+.airline-image {
+    height: 200;
+    width: 100%;
+    max-width: 180px;
+    border-radius: 12px;
+    transition: all 0.5s ease;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    background-color: #ffffff00;
+    position: relative;
+    z-index: 2;
+}
+
+.airline-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+}
+
+.right-content {
+    margin-left: 20px;
+    z-index: 2;
+    position: relative;
+    flex: 3;
+}
+
+.right-content h3 {
+    margin-bottom: 15px;
+    font-size: 1.5em;
+    color: #333;
+    transition: color 0.5s ease;
+}
+
+select {
+    padding: 10px;
+    border-radius: 8px;
+    transition: all 0.5s ease;
+    border: 1px solid rgba(0,0,0,0.1);
+    background-color: rgba(255,255,255,0.9);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    appearance: none;
+    cursor: pointer;
+}
+
+select:hover {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+}
+
+select option {
+    background-color: white;
+    color: #333;
+}
+
+@media (max-width: 768px) {
+    .slab-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .right-content {
+        margin-left: 0;
+        margin-top: 15px;
+    }
+
+    .airline-image {
+        max-width: 150px;
+        max-height: 150px;
+    }
+}

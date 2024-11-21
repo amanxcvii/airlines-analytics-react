@@ -2,23 +2,34 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, CartesianGrid } from 'recharts';
 import './App.css';
+import { useNavigate } from 'react-router-dom';
+import { useData } from './DataContext';
 
 
 const AirportDelayChart = () => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true); // Loader state
+    const navigate = useNavigate();
+    const {setAirlineMap} = useData();
+    
 
     useEffect(() => {
         axios.get('http://localhost:5000/flight_delay_by_airline')
             .then(response => {
                 setData(response.data);
                 setLoading(false); // Stop loading once data is fetched
+                setAirlineMap(response.data);
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
                 setLoading(false);
             });
     }, []);
+
+    const fetchAirlineData = (bar) => {
+        const airline = bar.Airline;
+        navigate(`/AirlineData/${airline}`);
+    }
 
     return (
         <div className="chart-container">
@@ -32,7 +43,11 @@ const AirportDelayChart = () => {
                     <YAxis/>
                     <Tooltip />
                     <Legend />
-                    <Bar dataKey="ttl_delay" fill="#8884d8" name="Average Flight Delay (In Mintues)" barSize={50}/>
+                    <Bar dataKey="ttl_delay" 
+                    fill="#8884d8" 
+                    name="Average Flight Delay (In Mintues)"
+                    onClick={(bar) => fetchAirlineData(bar)}
+                    barSize={50}/>
                 </BarChart>
             )}
         </div>

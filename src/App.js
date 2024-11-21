@@ -5,26 +5,29 @@ import './App.css';
 import Analytics from './Analytics';
 import LoginPage from './LoginPage';
 import AirlineData from './AirlineData';
+import { DataProvider } from './DataContext';
 
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <Routes>
-          <Route path="/" element={<LoginPage />} />
-        </Routes>
-        <Routes>
-          <Route path="/visualisation" element={<Visualisation />} />
-        </Routes>
-        <Routes>
-          <Route path="/analytics" element={<Analytics />} />
-        </Routes>
-        <Routes>
-          <Route path="/AirlineData/:airline" element={<AirlineData/>} />
-        </Routes>
-      </div>
-    </Router>
+    <DataProvider>
+      <Router>
+        <div className="App">
+          <Routes>
+            <Route path="/" element={<LoginPage />} />
+          </Routes>
+          <Routes>
+            <Route path="/visualisation" element={<Visualisation />} />
+          </Routes>
+          <Routes>
+            <Route path="/analytics" element={<Analytics />} />
+          </Routes>
+          <Routes>
+            <Route path="/AirlineData/:airline" element={<AirlineData />} />
+          </Routes>
+        </div>
+      </Router>
+    </DataProvider>
   );
 }
 
