@@ -4,7 +4,6 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import './AirlineData.css'
 import { airlineImages } from "./airlineImages";
-import { useData } from "./DataContext";
 import ColorThief from 'colorthief';
 
 const AirlineData = () => {
