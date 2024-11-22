@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useCallback } from "react";
+import React, { useMemo, useState} from "react";
 import DataTable from "react-data-table-component";
 
 const FlightDataTable = ({ data, dominantColor }) => {
