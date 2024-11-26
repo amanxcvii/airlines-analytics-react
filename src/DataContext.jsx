@@ -1,17 +1,18 @@
 import React, { createContext, useContext, useState } from 'react';
 
-const DataContext = createContext();
-
+export const DataContext = createContext();
+export const useData = () => useContext(DataContext);
 
 export const DataProvider = ({ children }) => {
-    const [airlineMap, setAirlineMap] = useState([]);
-    
+    const [airlineMap, setAirlineMapState] = useState([]);
+
+    const setAirlineMap = (data) => {
+        setAirlineMapState(data);
+    }
+
     return (
         <DataContext.Provider value={{ airlineMap, setAirlineMap }}>
             {children}
         </DataContext.Provider>
     );
 };
-
-export const useData = () => useContext(DataContext);
-export default DataContext;
