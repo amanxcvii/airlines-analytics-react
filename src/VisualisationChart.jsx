@@ -24,7 +24,7 @@ const AirportDelayChart = () => {
                 console.error('Error fetching data:', error);
                 setLoading(false);
             });
-    }, []);
+    }, [setAirlineMap]);
 
     const fetchAirlineData = (bar) => {
         const airline = bar.Airline;
